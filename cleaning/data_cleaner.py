@@ -6,6 +6,10 @@ class DataCleaner():
         self.df_resulte = None
 
     def update_to_lowercase(self):
-        self.df["Text"] =str(self.df["Text"]).lower()
+        self.df["Text"] =self.df["Text"].astype(str).apply(lambda x: x.lower())
+
+
+
+
 
 #
