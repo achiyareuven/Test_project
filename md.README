@@ -1,0 +1,8 @@
+#My project deals with data analysis of anti-Semitic and non-anti-Semitic Twitter messages.
+
+
+##My data analysis includes functions for the number of tweets per category.
+Also includes average words per message and a host of other analyses
+
+
+##To run the program, a path to a CSV file and a path to a Gson file to write the result to a file
