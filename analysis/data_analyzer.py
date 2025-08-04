@@ -1,6 +1,7 @@
 import pandas as pd
 
 
+
 class DataAnalyzer:
     def __init__(self, df):
         self.result = {}
@@ -32,13 +33,15 @@ class DataAnalyzer:
         self.df["word count"] = self.df["Text"].apply(lambda x:len(str(x).split()))
         antisemitic  = self.df[self.df["Biased"]==1]["word count"].mean()
         non_antisemitic  = self.df[self.df["Biased"]==0]["word count"].mean()
-        total = self.df[self.df["word count"]].mean()
+        total = self.df["word count"].mean()
 
         self.result["average_length"]={
              "antisemitic": antisemitic,
              "non_antisemitic": non_antisemitic,
              "total": total
         }
+
+
     def three_longest_tweets(self):
         self.df["word count"] = self.df["Text"].apply(lambda x:len(str(x).split()))
 
@@ -59,8 +62,24 @@ class DataAnalyzer:
         pass
 
     def amount_of_uppercase(self):
+        def count_uppercase_words(text):
+            text = str(text)
+            words = text.split()
+            count =0
+            for word in words:
+                if word.isupper()and len(word)>1:
+                    count +=1
+            return count
+        self.df["count uppercas"] = self.df["Text"].apply(count_uppercase_words)
+        antisemitic = self.df[self.df["Biased"] == 1]["count uppercas"].sum()
+        non_antisemitic = self.df[self.df["Biased"] == 0]["count uppercas"].sum()
+        total = self.df["count uppercas"].sum()
 
-        pass
+        self.result["uppercase_words"] = {
+            "antisemitic":antisemitic,
+            "non_antisemitic":non_antisemitic,
+            "total":total
+        }
 
     def return_dict_result(self):
-        pass
+        return self.result
