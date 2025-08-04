@@ -1,11 +1,11 @@
 import  pandas as pd
 import json
 
-
+# Loads CSV to DF
 def load_data(path):
     df = pd.read_csv(r"C:\Users\achiy\PycharmProjects\Test_project\data\tweets_dataset.csv")
     return df
-
+#Writing the dictionary to a JSON file
 def write_to_Jason(dict_result,file_path):
     try:
         with open(file_path,"w")as file:

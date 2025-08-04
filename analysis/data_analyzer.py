@@ -7,6 +7,7 @@ class DataAnalyzer:
         self.result = {}
         self.df = df
 
+    # Number of tweets per category
     def amount_of_tweets(self):
         antisemitic = 0
         non_antisemitic = 0
@@ -28,7 +29,7 @@ class DataAnalyzer:
             "unspecified":unspecified
         }
 
-
+    #Average words per tweet by category
     def average_words(self):
         self.df["word count"] = self.df["Text"].apply(lambda x:len(str(x).split()))
         antisemitic  = self.df[self.df["Biased"]==1]["word count"].mean()
@@ -41,7 +42,7 @@ class DataAnalyzer:
              "total": total
         }
 
-
+    # The three longest tweets
     def three_longest_tweets(self):
         self.df["word count"] = self.df["Text"].apply(lambda x:len(str(x).split()))
 
@@ -60,7 +61,7 @@ class DataAnalyzer:
 
     def ten_common_words(self):
         pass
-
+    #Number of words in uppercase letters by category
     def amount_of_uppercase(self):
         def count_uppercase_words(text):
             text = str(text)
@@ -81,5 +82,6 @@ class DataAnalyzer:
             "total":total
         }
 
+    #Returns a dictionary to write to JSON
     def return_dict_result(self):
         return self.result
