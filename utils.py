@@ -1,6 +1,15 @@
 import  pandas as pd
+import json
 
 
 def load_data(path):
     df = pd.read_csv(r"C:\Users\achiy\PycharmProjects\Test_project\data\tweets_dataset.csv")
     return df
+
+def write_to_Jason(dict_result,file_path):
+    try:
+        with open(file_path,"w")as file:
+            json.dump(dict_result,file)
+
+    except Exception as e:
+        print(f"error{e}")
