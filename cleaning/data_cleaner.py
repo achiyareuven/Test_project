@@ -1,0 +1,11 @@
+import pandas as pd
+
+class DataCleaner():
+    def __init__(self,df):
+        self.df = df
+        self.df_resulte = None
+
+    def update_to_lowercase(self):
+        self.df["Text"] =str(self.df["Text"]).lower()
+
+#
