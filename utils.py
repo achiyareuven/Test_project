@@ -13,3 +13,11 @@ def write_to_Jason(dict_result,file_path):
 
     except Exception as e:
         print(f"error{e}")
+
+
+def write_df_to_csv(df,file_path):
+    try:
+        df.to_csv(file_path,index=False)
+    except Exception as e:
+        print(f" error {e}")
+
