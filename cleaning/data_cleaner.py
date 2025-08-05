@@ -6,7 +6,7 @@ class DataCleaner():
         self.df_resulte = None
 
     def remove_unclassified_rows(self):
-        self.df = self.df([self.df["Biased"]]==0) | ([self.df["Biased"]]==1)
+        self.df = self.df[(self.df["Biased"] == 0) | (self.df["Biased"] == 1)]
 
     def update_to_lowercase(self):
         self.df["Text"] =self.df["Text"].astype(str).apply(lambda x: x.lower())
@@ -19,6 +19,11 @@ class DataCleaner():
             return text
 
         self.df["Text"] = self.df["Text"].apply(clean_data)
+
+    def full_cleaning(self):
+        self.remove_unclassified_rows()
+        self.update_to_lowercase()
+        self.remove_punctuation_marks()
 
     def get_cleaned_df(self):
         return self.df[["Text", "Biased"]]
