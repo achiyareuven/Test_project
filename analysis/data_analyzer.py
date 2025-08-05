@@ -23,10 +23,10 @@ class DataAnalyzer:
         total = antisemitic  + non_antisemitic +unspecified
 
         self.result["total_tweets"]={
-            "antisemitic":antisemitic,
-            "non_antisemitic":non_antisemitic,
-            "total":total,
-            "unspecified":unspecified
+            "antisemitic":int (antisemitic),
+            "non_antisemitic":int (non_antisemitic),
+            "total":int (total),
+            "unspecified":int(unspecified)
         }
 
     #Average words per tweet by category
@@ -37,9 +37,9 @@ class DataAnalyzer:
         total = self.df["word count"].mean()
 
         self.result["average_length"]={
-             "antisemitic": antisemitic,
-             "non_antisemitic": non_antisemitic,
-             "total": total
+             "antisemitic":float (antisemitic),
+             "non_antisemitic":float (non_antisemitic),
+             "total":float (total)
         }
 
     # The three longest tweets
@@ -77,10 +77,16 @@ class DataAnalyzer:
         total = self.df["count uppercas"].sum()
 
         self.result["uppercase_words"] = {
-            "antisemitic":antisemitic,
-            "non_antisemitic":non_antisemitic,
-            "total":total
+            "antisemitic":int(antisemitic),
+            "non_antisemitic":int(non_antisemitic),
+            "total":int(total)
         }
+
+    def full_analysis(self):
+        self.amount_of_tweets()
+        self.average_words()
+        self.three_longest_tweets()
+        self.amount_of_uppercase()
 
     #Returns a dictionary to write to JSON
     def return_dict_result(self):
